@@ -13,7 +13,9 @@ import { navigate } from '@electricui/utility-electron'
 
 interface InjectDeviceIDFromLocation {
   deviceID?: string
+  '*'?: string // we get passed the path as the wildcard
 }
+
 
 export const DevicePages = (
   props: RouteComponentProps & InjectDeviceIDFromLocation,

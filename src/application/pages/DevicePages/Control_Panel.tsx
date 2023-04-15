@@ -400,7 +400,8 @@ export const SetPointPage = (props: RouteComponentProps) => {
   const deviceID = useDeviceMetadataKey('name') ?? 'BumpRig Module'
 
   return (
-    <Composition templateCols="1fr 2fr" gap={10} templateRows="2fr">
+    <Composition templateCols="1fr 2fr" gap={10} templateRows= "1fr">
+      <React.Fragment>
       <Card>
         <DataInjestor />
       </Card>
@@ -411,7 +412,7 @@ export const SetPointPage = (props: RouteComponentProps) => {
           <div style={{ textAlign: 'center', marginBottom: '1em' }}>
             <b>Set Point</b> {deviceID}
           </div>
-          <ChartContainer height={325}>
+          <ChartContainer height= {310}>
             <LineChart
               dataSource={setPointDataSource}
               color={Colors.RED5}
@@ -457,6 +458,7 @@ export const SetPointPage = (props: RouteComponentProps) => {
         </Statistics>
       </Card>
       </div>
+      </React.Fragment>
     </Composition>
   )
 }

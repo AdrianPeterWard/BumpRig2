@@ -7,6 +7,11 @@ import { navigate } from '@electricui/utility-electron'
 import { useDeviceMetadataKey } from '@electricui/components-core'
 import React from 'react'
 
+interface InjectDeviceIDFromLocation {
+  deviceID?: string
+  '*'?: string // we get passed the path as the wildcard
+}
+
 const CardInternals = () => {
   const metadataName = useDeviceMetadataKey('name') ?? 'BumpRig Module'
 
@@ -18,7 +23,7 @@ const CardInternals = () => {
   )
 }
 
-export const ConnectionPage = (props: RouteComponentProps) => {
+export const ConnectionPage = (props: RouteComponentProps & InjectDeviceIDFromLocation) => {
   return (
     <React.Fragment>
       <div style={{ height: '100vh' }}>
@@ -26,7 +31,7 @@ export const ConnectionPage = (props: RouteComponentProps) => {
 
         <Connections
           preConnect={deviceID => navigate(`/device_loading/${deviceID}`)}
-          postHandshake={deviceID => navigate(`/devices/${deviceID}`)}
+          postHandshake={deviceID => navigate(`/devices/${deviceID}/Control_Panel`)}
           onFailure={(deviceID, err) => {
             console.log('Connections component got error', err, deviceID)
             navigate(`/`)
