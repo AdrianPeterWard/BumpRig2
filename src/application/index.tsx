@@ -12,10 +12,8 @@ let root = document.createElement('div')
 root.className = 'root'
 document.body.appendChild(root)
 
-const store = configureStore()
-
-function render(Component: any) {
-  ReactDOM.render(<Component store={store} />, root)
+function render(Component: React.ReaceNode) {
+  ReactDOM.render(<Component />, root)
 }
 
 render(Root)
