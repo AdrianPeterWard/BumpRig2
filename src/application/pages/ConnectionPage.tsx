@@ -26,7 +26,7 @@ export const ConnectionPage = (props: RouteComponentProps) => {
 
         <Connections
           preConnect={deviceID => navigate(`/device_loading/${deviceID}`)}
-          postHandshake={deviceID => navigate(`/devices/${deviceID}`)}
+          postHandshake={deviceID => navigate(`/devices/${deviceID}/Control_Panel`)}
           onFailure={(deviceID, err) => {
             console.log('Connections component got error', err, deviceID)
             navigate(`/`)
