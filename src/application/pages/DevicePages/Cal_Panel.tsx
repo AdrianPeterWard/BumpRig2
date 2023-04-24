@@ -92,6 +92,8 @@ export const CalPage = (props: RouteComponentProps) => {
                     'n_intl',
                     'n_der',
                     'n_cont',
+                    'v_Sensor',
+                    'n_Sensor',
                   ]}
                   interval={100}
                 />

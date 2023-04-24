@@ -12,7 +12,6 @@ import {
   TreeNodeInfo,
   TreeEventHandler,
 } from '@blueprintjs/core'
- 
 
 import {
   ChartContainer,
@@ -43,6 +42,8 @@ import { readFileSync } from 'fs'
 import { IconNames } from '@blueprintjs/icons'
 import { Composition } from 'atomic-layout'
 
+import { NumberInput } from '@electricui/components-desktop-blueprint'
+
 import { useDeviceMetadataKey } from '@electricui/components-core'
 
 // Add the `csv` package to package.json
@@ -59,7 +60,6 @@ const previouserrorDataSource = new MessageDataSource('n_previous_error')
 const integralDataSource = new MessageDataSource('n_integral')
 const derivativeDataSource = new MessageDataSource('n_derivative')
 const controlsignalDataSource = new MessageDataSource('n_control_signal')
-
 
 /**
  * Full width file picker
@@ -400,64 +400,64 @@ export const SetPointPage = (props: RouteComponentProps) => {
   const deviceID = useDeviceMetadataKey('name') ?? 'BumpRig Module'
 
   return (
-    <Composition templateCols="1fr 2fr" gap={10} templateRows= "1fr">
+    <Composition templateCols="1fr 2fr" gap={10} templateRows="1fr">
       <React.Fragment>
-      <Card>
-        <DataInjestor />
-      </Card>
-      <div>
         <Card>
-          <IntervalRequester variables={['set_point']} interval={100} />
-          <IntervalRequester variables={['x_position']} interval={100} />
-          <div style={{ textAlign: 'center', marginBottom: '1em' }}>
-            <b>Set Point</b> {deviceID}
-          </div>
-          <ChartContainer height= {310}>
-            <LineChart
-              dataSource={setPointDataSource}
-              color={Colors.RED5}
-              lineWidth={5}
-            />
-            <LineChart
-              dataSource={strokeMeasuredDataSource}
-              color={Colors.BLUE5}
-              lineWidth={5}
-            />
-            <RealTimeDomain window={10000} yMin={0} yMax={200} />
-            <TimeAxis label="Time (Seconds)" />
-            <VerticalAxis label="Stroke Position (mm)" />
-            <ZoomBrush />
-          </ChartContainer>
+          <DataInjestor />
         </Card>
-        <Card style={{ marginTop: 10 }}>
-          <div>Set Point Override</div>
-          <div style={{ margin: 20 }}>
-            <Slider min={0} max={200} stepSize={5} labelStepSize={10}>
-              <Slider.Handle accessor="set_point" />
-            </Slider>
-          </div>
-        </Card>
+        <div>
+          <Card>
+            <IntervalRequester variables={['set_point']} interval={100} />
+            <IntervalRequester variables={['x_position']} interval={100} />
+            <div style={{ textAlign: 'center', marginBottom: '1em' }}>
+              <b>Set Point</b> {deviceID}
+            </div>
+            <ChartContainer height={310}>
+              <LineChart
+                dataSource={setPointDataSource}
+                color={Colors.RED5}
+                lineWidth={5}
+              />
+              <LineChart
+                dataSource={strokeMeasuredDataSource}
+                color={Colors.BLUE5}
+                lineWidth={5}
+              />
+              <RealTimeDomain window={10000} yMin={0} yMax={200} />
+              <TimeAxis label="Time (Seconds)" />
+              <VerticalAxis label="Stroke Position (mm)" />
+              <ZoomBrush />
+            </ChartContainer>
+          </Card>
+          <Card style={{ marginTop: 10 }}>
+            <div>Set Point Override</div>
+            <div style={{ margin: 20 }}>
+              <Slider min={0} max={200} stepSize={5} labelStepSize={10}>
+                <Slider.Handle accessor="set_point" />
+              </Slider>
+            </div>
+          </Card>
 
+          <Card style={{ marginTop: 10 }}>
+            <Statistics>
+              <Statistic
+                accessor="x_position"
+                label="Position"
+                suffix="mm"
+                color={Colors.BLUE1}
+              />
 
-      <Card style={{ marginTop: 10 }}>
-        <Statistics>
-          <Statistic
-            accessor="x_position"
-            label="Position"
-            suffix="mm"
-            color={Colors.BLUE1}
-          />
+              <Statistic
+                accessor="t_Test_ms"
+                label="Run Time"
+                suffix="ms"
+                color={Colors.RED1}
+              />
+            </Statistics>
+          </Card>
+
           
-
-          <Statistic
-            accessor="t_Test_ms"
-            label="Run Time"
-            suffix="ms"
-            color={Colors.RED1}
-          />
-        </Statistics>
-      </Card>
-      </div>
+        </div>
       </React.Fragment>
     </Composition>
   )

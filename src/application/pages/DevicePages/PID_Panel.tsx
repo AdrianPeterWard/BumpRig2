@@ -179,7 +179,7 @@ export const PIDPage = (props: RouteComponentProps) => {
             <Card>
               <div>Kp Override</div>
               <div style={{ margin: 20 }}>
-                <Slider sendOnlyOnRelease={false} defaultTrackIntent='primary' min={0} max={10} stepSize={0.05} labelStepSize={1}>
+                <Slider sendOnlyOnRelease={false} defaultTrackIntent='primary' min={0} max={5} stepSize={0.05} labelStepSize={1}>
                   <Slider.Handle accessor="n_Kp" intentBefore='danger'/>
                 </Slider>
               </div>
@@ -199,14 +199,16 @@ export const PIDPage = (props: RouteComponentProps) => {
             <Card>
               <div>Kd Override</div>
               <div style={{ margin: 20 }}>
-                <Slider sendOnlyOnRelease={false} defaultTrackIntent='warning' min={0} max={10} stepSize={0.5} labelStepSize={1}>
+                <Slider sendOnlyOnRelease={false} defaultTrackIntent='warning' min={0} max={2} stepSize={0.1} labelStepSize={1}>
                   <Slider.Handle accessor="n_Kd" intentBefore='danger' />
                 </Slider>
               </div>
             </Card>
           </Areas.Slider4>
+          
         </React.Fragment>
       )}
     </Composition>
+    
   )
 }
