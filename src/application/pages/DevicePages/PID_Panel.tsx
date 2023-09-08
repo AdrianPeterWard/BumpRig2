@@ -157,6 +157,7 @@ export const PIDPage = (props: RouteComponentProps) => {
                   suffix= "mm"
                   color={Colors.GREEN3}
                 />
+
                 <Statistic
                   accessor="n_cont"
                   label="Control Signal"

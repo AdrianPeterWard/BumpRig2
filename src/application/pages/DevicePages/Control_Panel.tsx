@@ -60,6 +60,10 @@ const previouserrorDataSource = new MessageDataSource('n_previous_error')
 const integralDataSource = new MessageDataSource('n_integral')
 const derivativeDataSource = new MessageDataSource('n_derivative')
 const controlsignalDataSource = new MessageDataSource('n_control_signal')
+const totalwheelDataSource = new MessageDataSource('x_travel')
+const LapsDataSource = new MessageDataSource('Laps')
+const AverageStrokeDataSource = new MessageDataSource('averageStroke')
+
 
 /**
  * Full width file picker
@@ -409,6 +413,9 @@ export const SetPointPage = (props: RouteComponentProps) => {
           <Card>
             <IntervalRequester variables={['set_point']} interval={100} />
             <IntervalRequester variables={['x_position']} interval={100} />
+            <IntervalRequester variables={['x_travel']} interval={100} />
+            <IntervalRequester variables={['Laps']} interval={100} />
+            <IntervalRequester variables={['averageStroke']} interval={100} />
             <div style={{ textAlign: 'center', marginBottom: '1em' }}>
               <b>Set Point</b> {deviceID}
             </div>
@@ -448,9 +455,23 @@ export const SetPointPage = (props: RouteComponentProps) => {
               />
 
               <Statistic
-                accessor="t_Test_ms"
-                label="Run Time"
-                suffix="ms"
+                accessor="x_travel"
+                label="Total Travel"
+                suffix="mm"
+                color={Colors.RED1}
+              />
+
+              <Statistic
+                accessor="Laps"
+                label="Test Laps"
+                suffix=""
+                color={Colors.RED1}
+              />
+
+              <Statistic
+                accessor="averageStroke"
+                label="Average Wheel Travel"
+                suffix="mm / cycle"
                 color={Colors.RED1}
               />
             </Statistics>
@@ -462,3 +483,4 @@ export const SetPointPage = (props: RouteComponentProps) => {
     </Composition>
   )
 }
+

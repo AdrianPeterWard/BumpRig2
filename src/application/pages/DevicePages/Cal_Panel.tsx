@@ -94,6 +94,8 @@ export const CalPage = (props: RouteComponentProps) => {
                     'n_cont',
                     'v_Sensor',
                     'n_Sensor',
+                    'CalMax',
+                    'CalMin',
                   ]}
                   interval={100}
                 />
@@ -186,9 +188,21 @@ export const CalPage = (props: RouteComponentProps) => {
                   suffix="V"
                   color={Colors.BLUE1}
                 />
-                                <Statistic
+                <Statistic
                   accessor="x_position"
                   label="Stroke Sensor"
+                  suffix="mm"
+                  color={Colors.BLUE1}
+                />
+                <Statistic
+                  accessor="CalMax"
+                  label="Cal Max"
+                  suffix="mm"
+                  color={Colors.BLUE1}
+                />
+                <Statistic
+                  accessor="CalMin"
+                  label="Cal Min"
                   suffix="mm"
                   color={Colors.BLUE1}
                 />
